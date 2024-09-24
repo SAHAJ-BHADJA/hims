@@ -74,6 +74,7 @@ export const AppointmentForm = ({
       if (type === "create" && patientId) {
         const appointment = {
           userId,
+          patient: patientId,
           patientCollection: patientId,
           primaryPhysician: values.primaryPhysician,
           schedule: new Date(values.schedule),
@@ -101,6 +102,7 @@ export const AppointmentForm = ({
             cancellationReason: values.cancellationReason,
           },
           type,
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Add this line to include the time zone
         };
 
         const updatedAppointment = await updateAppointment(appointmentToUpdate);
